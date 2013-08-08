@@ -46,12 +46,8 @@ namespace SigningHelper
 			{
 				provider.ImportCspBlob (File.ReadAllBytes (keyFile));
 				using (var stream = new FileStream (file, FileMode.Open, FileAccess.Read))
-				{
-					if (null == stream)
-						Console.WriteLine ("Null stream!");
 					using (var sha1 = new SHA1CryptoServiceProvider ())
 						File.WriteAllBytes (GetSignatureFile (file), provider.SignData (stream, sha1));
-				}
 			}
 		}
 
