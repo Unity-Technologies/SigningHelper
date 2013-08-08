@@ -19,6 +19,7 @@ SigningHelper command line arguments:
     --file=VALUE           The file to sign/verify
     --sign                 Sign FILE using KEY
     --verify               Verify FILE using KEY
+    --help                 Show help text
 
 Example: 
 
