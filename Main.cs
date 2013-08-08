@@ -37,6 +37,7 @@ namespace SigningHelper
 		private static string File{ get; set; }
 		private static bool Sign{ get; set; }
 		private static bool Verify{ get; set; }
+		private static bool ShowHelp{ get; set; }
 
 		public static int Main (string[] args)
 		{
@@ -74,6 +75,8 @@ namespace SigningHelper
 					v => (KeyFile = v))
 				.Add("file=", "The file to sign/verify",
 					v => (File = v))
+				.Add("help", "Show help text",
+					v => (ShowHelp = true))
 				.Add("sign", "Sign FILE using KEY",
 					v => (Sign = true))
 				.Add("verify", "Verify FILE using KEY",
@@ -83,6 +86,7 @@ namespace SigningHelper
 			{
 				var unparsed = p.Parse(args);
 				if (unparsed.Count==0 &&
+				    !ShowHelp &&
 				    !string.IsNullOrEmpty (KeyFile) &&
 				    !string.IsNullOrEmpty (File) &&
 				    (Sign || Verify)
