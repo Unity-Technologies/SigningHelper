@@ -51,18 +51,18 @@ namespace SigningHelper.Test
 
 				// Verify valid signatures
 				Assert.IsTrue (SH.VerifySignature (temp.Name, kGood));
-//				Assert.IsTrue (SH.VerifySignature (temp.Name, kGoodPublic));
+				Assert.IsTrue (SH.VerifySignature (temp.Name, kGoodPublic));
 
 				// Verify invalid signatures
 				Assert.IsFalse (SH.VerifySignature (temp.Name, kBad));
-//				Assert.IsFalse (SH.VerifySignature (temp.Name, kBadPublic));
+				Assert.IsFalse (SH.VerifySignature (temp.Name, kBadPublic));
 
 				// Verify changed content => invalid signatures
 				File.WriteAllText (temp.Name, kContent+kContent);
 				Assert.IsFalse (SH.VerifySignature (temp.Name, kGood));
-//				Assert.IsFalse (SH.VerifySignature (temp.Name, kGoodPublic));
+				Assert.IsFalse (SH.VerifySignature (temp.Name, kGoodPublic));
 				Assert.IsFalse (SH.VerifySignature (temp.Name, kBad));
-//				Assert.IsFalse (SH.VerifySignature (temp.Name, kBadPublic));
+				Assert.IsFalse (SH.VerifySignature (temp.Name, kBadPublic));
 			}
 		}
 	}

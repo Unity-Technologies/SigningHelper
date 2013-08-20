@@ -56,7 +56,15 @@ namespace SigningHelper
 			try {
 				using (var provider = new RSACryptoServiceProvider ())
 				{
-					provider.ImportCspBlob (File.ReadAllBytes (publicKeyFile));
+					byte[] blob = File.ReadAllBytes (publicKeyFile);
+					try {
+					
+						provider.ImportCspBlob (blob);
+					} catch (CryptographicException) {
+						// The sn utility prepends a 12-byte header to exported public keys
+						// which .NET is apparently incapable of ignoring
+						provider.ImportCspBlob (blob.Skip (12).ToArray ());
+					}
 					using (var sha1 = new SHA1CryptoServiceProvider ())
 						return provider.VerifyData (File.ReadAllBytes (file), sha1, File.ReadAllBytes (GetSignatureFile (file)));
 				}
