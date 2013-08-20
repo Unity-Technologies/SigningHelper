@@ -72,15 +72,15 @@ namespace SigningHelper
 		{
 			var p = new OptionSet()
 				.Add("key=", "The key to use for signing/verification",
-					v => (KeyFile = v))
+					v => KeyFile = v)
 				.Add("file=", "The file to sign/verify",
-					v => (File = v))
+					v => File = v)
 				.Add("help", "Show help text",
-					v => (ShowHelp = true))
+					v => ShowHelp = true)
 				.Add("sign", "Sign FILE using KEY",
-					v => (Sign = true))
+					v => Sign = true)
 				.Add("verify", "Verify FILE using KEY",
-					v => (Verify = true));
+					v => Verify = true);
 
 			try
 			{
